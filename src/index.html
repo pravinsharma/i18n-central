@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Document</title>
+</head>
+<body>
+    <header>
+        Product header
+        <iframe src="http://localhost:8080/lang-bar.html"
+            frameborder="0" style="height: 33px; width: 60px;"></iframe>
+    </header>
+    <section>
+        Body
+    </section>
+    <footer>
+        Footer
+    </footer>
+    <script>
+        window.addEventListener("message", (event) => {
+            if (event.origin === "http://localhost") {
+                var data = event.data;
+                if (data.type === 'command') {
+                    if (data.cmd === 'language') {
+                        switch (data.action) {
+                            case 'switch':
+                                console.log('Switching: ', data.value);
+                                break;
+                        }
+                    }
+                }
+            }
+        }, false);
+    </script>
+</body>
+</html>
